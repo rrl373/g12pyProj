@@ -21,14 +21,31 @@ function display_all_data()
     //total number of actors in each category (Action, Horror, Drama, Thriller, etc)
     document.getElementById("display").innerHTML = "";
      var newContent = '';
-
     newContent = 'Number of Actors';
-    for (var i = 0; i < 1; i++) { // Loop through object
+    var genreActor= [''];
+    var genreActorCount = [0];
+    var foundGenre = 0;
+    var size = 1;
+    for (var i = 0; i < responseObject.length; i++) { // Loop through object
+        foundGenre = 0;
+        for(var j = 0; j < size; j++){
+            if(responseObject[i].genres == genreActor[j]) {
+                genreActorCount[j] += 1;
+                foundGenre += 1;
+            }
+        }
+        if(foundGenre == 0){
+            genreActor.push(responseObject[i].genres);
+            genreActorCount.push(1);
+            size++;
+        }
+    }
+    for (var i = 0; i < genreActor.length; i++) { // Loop through object
         newContent += '<div class="event">';
-        newContent += '<p><b>' + responseObject[i].title + '</b><br>';
-        newContent += responseObject[i].year + '</p>';
+        newContent += '<p><b>' + 'Genre: ' + genreActor[i] + '</b><br>';
+        newContent += 'Count: ' + genreActorCount[i] + '</p>';
         newContent += '</div>';
-      }
+    }
     // BUILD UP STRING WITH NEW CONTENT (could also use DOM manipulation)
      /* for (var i = 0; i < responseObject.length; i++) { // Loop through object
           newContent += '<div class="event">';

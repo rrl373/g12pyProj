@@ -27,6 +27,7 @@
           background-image: url("../static/images/cover.jpg");
           background-size: cover;
           background-repeat: no-repeat;
+          background-attachment: fixed;
       }
      a {
          color: white;
@@ -52,7 +53,7 @@
           <a class="nav-link" href="/movies">Movies</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/actors">Actors</a>
+          <a class="nav-link" href="/actors" >Actors</a>
         </li>
       </ul>
       <form class="d-flex">
@@ -68,27 +69,23 @@
     <CENTER>
     <h1>Movies Database</h1>
     <p style="color:rgb(84, 33, 226);">
-      This database lists a number of movies along with their release year, cast, and genre.
+      This database lists a number of movies along with their genres, actors, and release dates.
+
       </p>
     <img src="/static/images/moviesMain.jpg" alt="moviesPicture" width="500" height="600" class="img-fluid">
     </CENTER>
   </div>
 
   <div class="bg-dark m-5 p-5 rounded" style="color: beige;">
-
-      <a  class="bg bg-primary" onclick="display_all_data()"> View Total Number of Actors</a>
-        <a  class="bg bg-success" onclick="display_one()"> View Total Number of Movies</a>
+      <p> We have listed below some fun statistics of the movies in our database. Click the button below to view the
+      total number of actors in each genre, or the total number of movies in each genre.</p>
+      <a  class="btn btn-danger" button type="button" onclick="display_genre_data()"> View Total Number of Actors</a>
+        <a  class="btn btn-success" onclick="display_genre_actor_data()"> View Total Number of Movies</a>
         <div id="display"></div>
-
   </div>
 </main>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
-            integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
-            crossorigin="anonymous"></script>
+<!-- NAV Doesn't expand when minimized without this -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
             integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
             crossorigin="anonymous"></script>

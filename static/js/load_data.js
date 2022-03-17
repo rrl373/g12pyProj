@@ -63,53 +63,47 @@ function display_all_data()
 //Display only the first event
 function display_one()
 {
-      document.getElementById("display").innerHTML = "";
-      var newContent = '';
+    document.getElementById("display").innerHTML = "";
+    var newContent = '';
+    //total number of movies in each category
+    /*var genres = ['', 'Comedy', 'Drama', 'Short','Documentary,Short','Comedy,Short','Western',
+        'Documentary', 'Short,Documentary', 'Adventure,Romance', 'Short,Crime,Drama',
+        'Short,Action,Crime,Western', 'Short,Crime,Drama', 'Short,Action,Crime,Western', 'Historical',
+         'Biography', 'Short,Comedy'];*/
+    var genres = [''];
+    let genresMovieCount = new Array(genres.length).fill(0);
+    //Make array of genres
+    for(var i = 0; i < responseObject.length; i++){
+        var theGenre
+        for(var k = 0; k < (responseObject[i].genres.length); j++) {
+            var found = 0;
+            //get array in json's genre
+            theGenre = responseObject[i].genres[k];
+            //compare it to current array's genre
+            for (var j = 0; j < genres.length; j++) {
+                if (genres[j] == theGenre) {
+                    found = 1;
+                    genresMovieCount[j]++;
+                }
+            }
+            if(found == 0){
+            genres.push(theGenre);
+            genresMovieCount.push(1);
+            }
+        }
+    }
       // BUILD UP STRING WITH NEW CONTENT (could also use DOM manipulation)
     newContent = 'Number of Movies';
-   for (var i = 0; i < 1; i++) { // Loop through object
+   for (var i = 0; i < genres.length; i++) { // Loop through object
         newContent += '<div class="event">';
-        newContent += '<p><b>' + responseObject[i].title + '</b><br>';
-        newContent += responseObject[i].year + '</p>';
+        newContent += genres[i];
+        newContent += genresMovieCount[i];
+        //newContent += '<p><b>' + responseObject[i].title + '</b><br>';
+        //newContent += responseObject[i].year + '</p>';
         newContent += '</div>';
       }
 
 
- /*    var top = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-      for (var i = 0; i < responseObject.events.length; i++) {
-          if (responseObject.events[i].year > responseObject.events[top[0]].year) {
-              top[0] = i;
-          } else if (responseObject.events[i].year > responseObject.events[top[1]].year) {
-              top[1] = i;
-          } else if (responseObject.events[i].year > responseObject.events[top[2]].year) {
-              top[2] = i;
-          } else if (responseObject.events[i].year > responseObject.events[top[3]].year) {
-              top[3] = i;
-          } else if (responseObject.events[i].year > responseObject.events[top[4]].year) {
-              top[4] = i;
-          } else if (responseObject.events[i].year > responseObject.events[top[5]].year) {
-              top[5] = i;
-          } else if (responseObject.events[i].year > responseObject.events[top[6]].year) {
-              top[6] = i;
-          } else if (responseObject.events[i].year > responseObject.events[top[7]].year) {
-              top[7] = i;
-          } else if (responseObject.events[i].year > responseObject.events[top[8]].year) {
-              top[8] = i;
-          } else if (responseObject.events[i].year > responseObject.events[top[9]].year) {
-              top[9] = i;
-          }
-      }
-
-      var newContent = "";
-      newContent = "movies";
-      for (var i = 0; i < 10; i++) { // Loop through object
-          newContent += '<div class="event">';
-          newContent += '<p><b>' + (i + 1) + '. ' + responseObject.events[top[i]].title + '</b><br>';
-          newContent += 'Released: ' + responseObject.events[top[i]].year + '</p>';
-          newContent += 'Cast: ' + responseObject.events[top[i]].cast + '</p>';
-          newContent += 'Genre: ' + responseObject.events[top[i]].genres + '</p>';
-          newContent += '</div>';
-      }*/
       // Update the page with the new content
       document.getElementById("display").innerHTML = newContent;
 }

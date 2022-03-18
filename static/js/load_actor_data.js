@@ -20,29 +20,34 @@ function display_genre_actor_data(dataPassed)
     document.getElementById("display").innerHTML = "";
     var newContent = '';
     var actorMovie = [];
+    var newActor = '';
+    var foundActor;
     //Find Actors Works
     for (var i = 0; i < responseObject.length; i++) { // Loop through object
         var movieTitle = responseObject[i].title;
+        foundActor = 0;
         for(var k = 0; k < (responseObject[i].cast.length); k++) {
-            //Loop: List every actor
-            //      Set Flag
-            foundMovie = 0;
-            newActor = responseObject[i].cast[k];
+            //Loop: Compare every actor in cast
+            newActor = String(responseObject[i].cast[k]);
+            if(newActor.charAt(0) === '$' || newActor.charAt(0) === '\'') {
+                k = responseObject[i].cast.length;
+                newActor = responseObject[i].cast.join(' ');
+            }
             //Loop: If movie found in current list flag as found, do nothing
-            if (String(newActor) == String(dataPassed)){
-                for (var j = 0; j < actorMovie.length; j++) {
-                        if(String(actorMovie[j]) == String(movieTitle)) {
-                            foundMovie += 1;
-                        }
+            for (var j = 0; j < actorMovie.length; j++) {
+                if (String(actorMovie[j]) === String(movieTitle)) {
+                    foundActor += 1;
                 }
-                //If new Genre, push new values into array
-                if (foundMovie == 0) {
+            }
+            if(foundActor === 0){
+                if (String(newActor) === String(dataPassed)){
                     actorMovie.push(movieTitle);
                 }
             }
         }
     }
 
+    //Print new section - right column
     newContent += '<div class="event bg-light text-primary">';
     newContent += 'Actor: ' + dataPassed;
     newContent += '<p><p>' + 'Works:' +'</p></p><ul>';
@@ -59,28 +64,37 @@ function display_actor_alphabetically_data()
 {
     //List Actors in Alphabetical Order
     document.getElementById("display").innerHTML = "";
-     var newContent = '';
+    var newContent = '';
     var actorList = [];
-    var foundGenre = 0, newActor = '';
+    var foundActor = 0, newActor = '';
     for (var i = 0; i < responseObject.length; i++) { // Loop through object
         for(var k = 0; k < responseObject[i].cast.length; k++) {
             //Loop: Each movie to list every actor
             //      Set Flag
-            foundGenre = 0;
+            foundActor = 0;
             newActor = responseObject[i].cast[k];
-            //If Empty String - Type is No Genre
-            if(String(newActor) == ' ' || String(newActor) == '.') {
-                newActor = 'No Actor Listed';
+            //Get rid of uneeded values
+            if(String(newActor) === '(' || String(newActor) === ')' || String(newActor) === '\"' ||
+               String(newActor) === '.' || String(newActor) === ']') {
+                foundActor += 1
             }
             //Loop: If Genre found in current list flag as found, do nothing
             for (var j = 0; j < actorList.length; j++) {
-                if (String(newActor) == String(actorList[j])) {
-                    foundGenre += 1;
+                if (String(newActor) === String(actorList[j])) {
+                    foundActor += 1;
                 }
             }
             //If new Genre, push new values into array
-            if (foundGenre == 0) {
-                    actorList.push(String(newActor));
+            if (foundActor === 0) {
+                if(newActor.charAt(0) === '\'' || newActor.charAt(0) === '$'){
+                    while(k>0){
+                        actorList.pop();
+                        k--;
+                    }
+                    k = responseObject[i].cast.length;
+                    newActor = responseObject[i].cast.join(' ');
+                }
+                actorList.push(String(newActor));
             }
         }
     }
@@ -99,16 +113,14 @@ function display_actor_alphabetically_data()
       // names must be equal
       return 0;
     });
+
     //Print
-    //newContent += '<div class="event"><ul>';
     newContent += '<ul>';
     for (var i = 0; i < actorList.length; i++) { // Loop through object
-    //    newContent += '<div class="event">';
         newContent += '<li>';
-        newContent += '<a  class="bg bg-primary" onclick="display_genre_actor_data(\'' + actorList[i] + '\')">'
+        newContent += '<a  class= "" onclick="display_genre_actor_data(\'' + actorList[i] + '\')">' //
             + actorList[i] + '</a>';
         newContent += '</li>';
-    //    newContent += '</div>';
     }
     newContent += '</ul>';
 

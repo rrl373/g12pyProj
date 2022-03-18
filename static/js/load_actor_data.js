@@ -75,7 +75,7 @@ function display_actor_alphabetically_data()
             newActor = responseObject[i].cast[k];
             //Get rid of uneeded values
             if(String(newActor) === '(' || String(newActor) === ')' || String(newActor) === '\"' ||
-               String(newActor) === '.' || String(newActor) === ']') {
+               String(newActor) === '.' || String(newActor) === ']'){
                 foundActor += 1
             }
             //Loop: If Genre found in current list flag as found, do nothing

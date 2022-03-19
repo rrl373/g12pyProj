@@ -143,3 +143,28 @@ function display_list(){
      newContent += '</div>';
      document.getElementById("displayContent").innerHTML = newContent;
 }
+
+function display_list_by_name(){
+    var selectName = document.getElementById("name").text;
+    var newContent = '';
+    responseObject.sort();
+    for (var i = size - 1; i >= end; i--) { // Loop through object
+          newContent += '<div class="event">';
+          newContent += '<ol>Newest To Oldest';
+          newContent += '<li><b>'+ 'Title: ' + responseObject[i].title + '</b><br>';
+          newContent += 'Year: ' + responseObject[i].year + '<br>';
+          newContent += '<ol>Cast: <br>';
+          for(var j = 0; j < responseObject[i].cast.length; j++){
+              newContent = '<li>' + responseObject[i].cast + '</li>';
+         }
+          newContent += '</ol>';
+          newContent += '<ol>Genres: <br>';
+          for(var k = 0; k < responseObject[i].genres.length; k++){
+              newContent += '<li>' + responseObject[i].genres + '</li>';
+          }
+          newContent += '</ol>';
+      }
+     newContent += '</ol>';
+     newContent += '</div>';
+    document.getElementById("displayContent").innerHTML = newContent;
+}

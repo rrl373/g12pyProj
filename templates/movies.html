@@ -47,13 +47,13 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/movies">Movies</a>
+          <a class="nav-link" href="./movies.html">Movies</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/actors">Actors</a>
+          <a class="nav-link" href="./actors.html">Actors</a>
         </li>
       </ul>
       <form class="d-flex">
@@ -69,8 +69,32 @@
     <h1>Movies</h1>
 
   </div>
+     <div id ="displayContent" class="bg-light p-5 rounded">
+      <form class="d-flex">
+          <h3>Sort By</h3>
+          <select id="year">
+              <option value="0">Year</option>
+              <option value="30">1900-1930</option>
+              <option value="60">1931-1960</option>
+              <option value="90">1961-1990</option>
+              <option value="18">1991-2018</option>
+        </select>
+        <select id="name">
+            <option>Title Name</option>
+            <option>A-F</option>
+            <option>F-I</option>
+            <option>I-L</option>
+            <option>L-O</option>
+            <option>O-R</option>
+            <option>R-X</option>
+            <option>X-Z</option>
+            <option>0-9</option>
+        </select>
+        <input id="Find" type="submit">
+      </form>
+  </div>
 
-  <div class="bg-dark m-5 p-5 rounded" style="color: beige;">
+  <div id="displayContent" class="bg-dark m-5 p-5 rounded" style="color: beige;">
 
       <a  class="bg bg-primary" onclick="display_all_data()"> View all Events</a>
         <a  class="bg bg-success" onclick="display_one()"> View an Event</a>

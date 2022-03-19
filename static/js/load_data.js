@@ -96,3 +96,50 @@ function display_genre_actor_data()
       document.getElementById("display").innerHTML = newContent;
 
 }
+
+function display_list(){
+    //document.getElementById("displayContent").innerHTML= list;
+    var newContent = '';
+    var selectYear = document.getElementById("year").value;
+    var size, end;
+    if(selectYear == "30"){
+       size = 30;
+       end = 0;
+    }
+    else if(selectYear == "60"){
+        size = 60;
+        end = 30;
+    }
+    else if(selectYear == "90"){
+        size = 90;
+        end = 60;
+    }
+    else if(selectYear == "118"){
+        size = 118;
+        end = 90;
+    } else {
+        size = responseObject.length;
+        end = 0;
+    }
+
+    // BUILD UP STRING WITH NEW CONTENT (could also use DOM manipulation)
+     for (var i = size - 1; i >= end; i--) { // Loop through object
+          newContent += '<div class="event">';
+          newContent += '<ol>Newest To Oldest';
+          newContent += '<li><b>'+ 'Title: ' + responseObject[i].title + '</b><br>';
+          newContent += 'Year: ' + responseObject[i].year + '<br>';
+          newContent += '<ol>Cast: <br>';
+          for(var j = 0; j < responseObject[i].cast.length; j++){
+              newContent = '<li>' + responseObject[i].cast + '</li>';
+         }
+          newContent += '</ol>';
+          newContent += '<ol>Genres: <br>';
+          for(var k = 0; k < responseObject[i].genres.length; k++){
+              newContent += '<li>' + responseObject[i].genres + '</li>';
+          }
+          newContent += '</ol>';
+      }
+     newContent += '</ol>';
+     newContent += '</div>';
+     document.getElementById("displayContent").innerHTML = newContent;
+}

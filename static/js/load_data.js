@@ -147,7 +147,16 @@ function display_list(){
 function display_list_by_name(){
     var selectName = document.getElementById("name").text;
     var newContent = '';
-    responseObject.sort();
+    responseObject.sort(function(a, b){
+        if(a.title.toLowerCase() < b.title.toLowerCase()){
+            return -1;
+        }
+        else if(a.title.toLowerCase() > b.title.toLowerCase()){
+            return 1;
+        } else{
+            return 0;
+        }
+    });
     for (var i = size - 1; i >= end; i--) { // Loop through object
           newContent += '<div class="event">';
           newContent += '<ol>Newest To Oldest';

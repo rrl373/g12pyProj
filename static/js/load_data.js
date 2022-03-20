@@ -177,3 +177,18 @@ function display_list_by_name(){
      newContent += '</div>';
     document.getElementById("displayContent").innerHTML = newContent;
 }
+
+//Search Movie
+function searchMoviesTitle(){
+    var input = document.getElementById('searchMovieTitle').value;
+    var newContent2 = '';
+    newContent2+= '<p>Results for: ' + String(input) + '</p><br>';
+    for (var i = 0; i < responseObject.length; i++) { // Loop through object
+       if ((responseObject[i].title).toLowerCase().includes(String(input))) {
+            newContent2+='<p>' + 'Title: ' + responseObject[i].title + '</p>';
+            newContent2+='<p>' + 'Year: ' + responseObject[i].year + '</p>';
+            newContent2+='<p>' + 'Cast: ' + responseObject[i].cast + '</p><br>';
+       }
+   }
+    document.getElementById("searchMo").innerHTML = newContent2;
+}

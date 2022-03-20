@@ -47,39 +47,38 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <a class="nav-link active" aria-current="page" href={{url_for('homepage')}} >Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/movies">Movies</a>
+          <a class="nav-link" href={{url_for('movies')}} >Movies</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/actors" >Actors</a>
+          <a class="nav-link" href={{url_for('actors')}} >Actors</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <!-- No need to use Search on Nav Bar yet
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+          -->
     </div>
   </div>
 </nav>
 
 <main class="container m-5 p-5">
-  <div class="bg-light p-5 rounded" >
-    <CENTER>
+  <div class="bg-light p-5 rounded text-center" >
     <h1>Movies Database</h1>
     <p style="color:rgb(84, 33, 226);">
       This database lists a number of movies along with their genres, actors, and release dates.
 
       </p>
-    <img src="/static/images/moviesMain.jpg" alt="moviesPicture" width="500" height="600" class="img-fluid">
-    </CENTER>
+    <img src="/static/images/moviesMain.jpg" alt="moviesPicture" width="400" height="500" class="img-fluid">
   </div>
 
-  <div class="bg-dark m-5 p-5 rounded" style="color: beige;">
-      <p> We have listed below some fun statistics of the movies in our database. Click the button below to view the
-      total number of actors in each genre, or the total number of movies in each genre.</p>
-      <a  class="btn btn-danger" button type="button" onclick="display_genre_data()"> View Total Number of Actors in each Genre</a>
+  <div class="bg-dark m-5 p-5 rounded text-center" style="color: beige;">
+    <p> We have listed some fun statistics of the movies in our database below. </p><br>
+        <a  class="btn btn-danger" button type="button" onclick="display_genre_data()"> View Total Number of Actors in each Genre</a>
         <a  class="btn btn-success" onclick="display_genre_actor_data()"> View Total Number of Movies in each Genre</a>
         <div id="display"></div>
   </div>
@@ -90,7 +89,7 @@
             integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
             crossorigin="anonymous"></script>
 
-<script src="{{ url_for('static', filename='js/load_data.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/load_data.js') }}"></script>
 
 
   </body>

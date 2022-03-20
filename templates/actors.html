@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Homepage</title>
+    <title>Actors</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -32,6 +32,11 @@
      a {
          color: white;
      }
+     a:hover {
+          color: #cc00ff !important; }
+     .actors{
+         display: list-item;
+      }
 
     </style>
 
@@ -41,54 +46,67 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="/"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
+              <a class="nav-link active" aria-current="page" href={{url_for('homepage')}} >Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/movies">Movies</a>
+              <a class="nav-link" href={{url_for('movies')}} >Movies</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/actors" >Actors</a>
+              <a class="nav-link" href={{url_for('actors')}} >Actors</a>
             </li>
           </ul>
+          <!-- No need to use Search on Nav Bar yet
           <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
+          -->
         </div>
       </div>
     </nav>
 
+
     <main class="container m-5 p-5">
       <div class="bg-light p-5 rounded" >
-        <h1>Actors</h1>
+        <h1 class = "text-center color: #4d004d">Actors</h1>
+      </div><br>
 
-      </div>
-
-      <div class="bg-dark m-5 p-5 rounded" style="color: beige;">
+      <div class="m-6 p-5 rounded" style="background-color:#ff99cc; color: #4d004d">
           <p> Below is a list of all the actors in our database. You may click on each actor to view
           their work. </p>
+          <p> To search for a specific actor, use the search bar below:</p>
+          <input type= "search" id="searchActor" class ="form-control" onkeyup="search_actor()" type="text"
+            name="search" placeholder="Search actor...">
+          <br><p> Note: Please be patient as the database loads. </p>
+          <br><hr class="bg-danger border-2 border-top border-danger"><br>
 
+        <!-- Database Loading below -->
         <div class="container">
-
           <div class="row">
-            <div class="col">
-              <div id="display"></div>
-            </div>
-            <div class="col">
+            <!-- Movie List of Actor's Work Page section -->
+            <div class="col-md-6 order-md-2">
               <div id="actorMovies"></div>
             </div>
+            <!-- Display List of Actors -->
+            <div class="col-md-6 order-md-1">
+              <div id="display"></div>
+            </div>
           </div>
-
-
       </div>
     </div></main>
 
     <script src="{{ url_for('static', filename='js/load_actor_data.js') }}"></script>
+    <!-- NAV Doesn't expand when minimized without this -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+            integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+            crossorigin="anonymous"></script>
   </body>
 </html>

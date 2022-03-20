@@ -36,7 +36,7 @@
     </style>
 
   </head>
-  <body>
+  <body onload="display_actor_alphabetically_data()">
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <div class="container-fluid">
@@ -47,13 +47,13 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./movies.html">Movies</a>
+              <a class="nav-link" href="/movies">Movies</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./actors.html">Actors</a>
+              <a class="nav-link" href="/actors" >Actors</a>
             </li>
           </ul>
           <form class="d-flex">
@@ -73,8 +73,6 @@
       <div class="bg-dark m-5 p-5 rounded" style="color: beige;">
           <p> Below is a list of all the actors in our database. You may click on each actor to view
           their work. </p>
-          <a  class="bg bg-primary" onclick="display_actor_alphabetically_data()">
-            View All Actors in Alphabetical Order</a>
 
         <div class="container">
 
@@ -92,6 +90,5 @@
     </div></main>
 
     <script src="{{ url_for('static', filename='js/load_actor_data.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/actor_afterLoad.js') }}"></script>
   </body>
 </html>
